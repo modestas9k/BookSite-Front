@@ -2,17 +2,21 @@ import React, { Suspense, lazy } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import { Header, Loading } from "./components";
-import { Home } from "./pages";
-const AboutLazy = lazy(() => import(`./pages/About/About`))
+import { Login } from "./pages";
+const RegisterLazy = lazy(() => import(`./pages/Register/Register`));
+const ViewBooksLazy = lazy(() => import(`./pages/ViewBooks/ViewBooks`));
+const AddBooksLazy = lazy(() => import(`./pages/AddBooks/AddBooks`));
 
 function Routes() {
   return (
     <Router>
       <Header />
-      <Suspense fallback={<Loading/>}>
+      <Suspense fallback={<Loading />}>
         <Switch>
-          <Route exact path="/" component={Home} />
-          <Route exact path="/about" component={AboutLazy} />
+          <Route exact path="/" component={Login} />
+          <Route exact path="/register" component={RegisterLazy} />
+          <Route exact path="/viewbooks" component={ViewBooksLazy} />
+          <Route exact path="/addbooks" component={AddBooksLazy} />
         </Switch>
       </Suspense>
     </Router>
