@@ -5,9 +5,17 @@ import AuthProvider from "./contexts/AuthContext";
 import { ThemeProvider } from "styled-components";
 import theme from "./theme";
 import "normalize.css";
+import { createGlobalStyle } from "styled-components";
+
+const GlobalStyle = createGlobalStyle`
+body {
+  font-family: Helvetica;
+}
+`;
 
 ReactDOM.render(
   <React.StrictMode>
+    <GlobalStyle />
     <ThemeProvider theme={theme}>
       <AuthProvider>
         <Routes />
