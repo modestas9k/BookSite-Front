@@ -8,9 +8,8 @@ export const Header = styled.header`
   padding: 1em;
 `;
 
-export const Logo = styled.img`
-  max-height: 40px;
-  max-width: 100%;
+export const Logo = styled.h1`
+  text-decoration: none;
 `;
 
 export const Actions = styled.nav``;
