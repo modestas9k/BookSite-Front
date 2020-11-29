@@ -7,7 +7,7 @@ function Login() {
   const history = useHistory();
   const authTokenContext = useContext(AuthContext);
 
-  function login(data, authTokenContext, history) {
+  function login(data, AuthContext, history) {
     fetch("http://localhost:8080/login", {
       method: "POST",
       headers: {
@@ -21,8 +21,12 @@ function Login() {
       .then((res) => res.json())
       .then((data) => {
         if (data.token) {
-          console.log(authTokenContext.token);
-          authTokenContext.setToken(data.token);
+          console.log(AuthContext.token);
+          AuthContext.setToken({
+            token: data.token,
+            user_id: data.userData.userId,
+            username: data.userData.username,
+          });
           history.push("/viewbooks");
         }
       })
