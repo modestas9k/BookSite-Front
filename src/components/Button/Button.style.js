@@ -13,21 +13,25 @@ export const Button = styled.button`
   border: none;
   border-radius: 5px;
   letter-spacing: 1px;
-  margin-top: 20px;
   padding: 0.7em 2em;
   transition: all 0.8s;
+  margin: 0 auto;
   cursor: pointer;
   &:hover {
-    transition: all 2s;
+    transition: all 0.3s;
     background: ${(props) =>
       props.color === "primary"
         ? "linear-gradient(180deg, rgba(253,29,29, 1) 0%, rgba(252,125,69, 1) 100%)"
         : props.theme.secondary.hover.background};
+    color: ${(props) =>
+      props.color === "primary"
+        ? props.theme.primary.color
+        : props.theme.secondary.hover.color};
   }
   &:focus {
     background: ${(props) =>
       props.color === "primary"
-        ? props.theme.primary.focus.background
+        ? "linear-gradient(90deg, rgb(159, 0, 31) 0%, rgba(252,125,69, 1) 100%)"
         : props.theme.secondary.focus.background};
   }
 `;
