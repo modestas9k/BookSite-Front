@@ -10,18 +10,22 @@ export const Header = styled.header`
 
 export const Logo = styled.h1`
   text-decoration: none;
+  margin: 0;
 `;
 
 export const Actions = styled.nav``;
 
 export const StyledLink = styled(Link)`
-  font-size: 0.9em;
+  font-size: 1.2em;
   color: #222;
   text-decoration: none;
   &:hover {
     text-decoration: underline;
   }
   &:not(:last-child) {
-    margin-right: 15px;
+    margin-right: 25px;
+  }
+  &:active {
+    text-decoration: underline;
   }
 `;

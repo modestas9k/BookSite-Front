@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import * as S from "./FormTemplate.style";
-import { Input } from "../../components";
+import { Input, Notification } from "../../components";
 
-function Form({ fields, callback, headline, children }) {
+function Form({ fields, callback, headline, children, message, color }) {
   const [fieldValues, setFieldValues] = useState();
 
   return (
@@ -13,6 +13,8 @@ function Form({ fields, callback, headline, children }) {
       }}
     >
       <h1>{headline}</h1>
+
+      <Notification message={message} color={color} />
 
       {fields &&
         fields.map((field) => (

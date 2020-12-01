@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { Section, Form, Button } from "../../components";
 import { AuthContext } from "../../contexts/AuthContext";
@@ -6,6 +6,7 @@ import { AuthContext } from "../../contexts/AuthContext";
 function Login() {
   const history = useHistory();
   const authTokenContext = useContext(AuthContext);
+  const [message, setMessage] = useState();
 
   function login(data, AuthContext, history) {
     fetch("http://localhost:8080/login", {
@@ -21,13 +22,11 @@ function Login() {
       .then((res) => res.json())
       .then((data) => {
         if (data.token) {
-          console.log(AuthContext.token);
-          AuthContext.setToken({
-            token: data.token,
-            user_id: data.userData.userId,
-            username: data.userData.username,
-          });
-          history.push("/viewbooks");
+          AuthContext.setToken(data.token);
+          localStorage.setItem("token", data.token);
+          history.push("/viewBooks");
+        } else {
+          return setMessage(data.msg || "Error");
         }
       })
       .catch((err) => console.log(err));
@@ -37,6 +36,7 @@ function Login() {
     <Section>
       <Form
         headline="Login"
+        message={message}
         fields={[
           {
             name: "username",

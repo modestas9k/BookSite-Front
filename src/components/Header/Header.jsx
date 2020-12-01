@@ -1,39 +1,37 @@
-import React, { useContext } from "react";
+import React from "react";
 import * as S from "./Header.style";
 import { Section, Button } from "../../components";
 import { AuthContext } from "../../contexts/AuthContext";
+import { useContext } from "react";
 import { useHistory } from "react-router-dom";
 
-function Header() {
-  const AuthToken = useContext(AuthContext);
+function Header({ logged }) {
+  const Auth = useContext(AuthContext);
   const history = useHistory();
 
+  function logOut(auth, history) {
+    auth.setToken("");
+    localStorage.removeItem("token");
+    history.push("/");
+  }
   return (
     <Section>
       <S.Header>
         <S.StyledLink to="/">
-          <S.Logo>BookSite</S.Logo>
+          <S.Logo>BookSite</S.Logo>
         </S.StyledLink>
         <S.Actions>
-          {AuthToken.token === "" && (
+          {!logged && (
             <>
               <S.StyledLink to="/">Login</S.StyledLink>
               <S.StyledLink to="/register">Register</S.StyledLink>
             </>
           )}
-          {AuthToken.token && (
+          {logged && (
             <>
-              <S.StyledLink to="/viewbooks">ViewBooks</S.StyledLink>
-              <S.StyledLink to="/addbooks">AddBooks</S.StyledLink>
-              <Button
-                handleClick={() => {
-                  AuthToken.setToken("");
-
-                  history.push("/login");
-                }}
-              >
-                Logout
-              </Button>
+              <S.StyledLink to="/viewBooks">View Books</S.StyledLink>
+              <S.StyledLink to="/addBooks">Add Books</S.StyledLink>
+              <Button handleClick={() => logOut(Auth, history)}>Logout</Button>
             </>
           )}
         </S.Actions>
