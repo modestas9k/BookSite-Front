@@ -13,10 +13,12 @@ const theme = {
     background: "#e6e6e6",
     color: "#737373",
     hover: {
-      background: "#cccccc",
+      background: "#58616a",
+      color: "#d3e3f1",
     },
     focus: {
-      background: "#8f8f8f",
+      background: "#58616a",
+      color: "#d3e3f1",
     },
   },
 };
